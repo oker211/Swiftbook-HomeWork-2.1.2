@@ -27,30 +27,28 @@ class ViewController: UIViewController {
     
     // MARK:- Propertys
     
-    var color: Color = .red
-    
-    let alphaMin: CGFloat = 0.3
-    let alphaMax: CGFloat = 1
-    let cornerRadiusButton: CGFloat = 15
-    let cornerRadiusView: CGFloat = 75
+    private var color: Color = .red
+    private let alphaMin: CGFloat = 0.3
+    private let alphaMax: CGFloat = 1
     
     // MARK:- Override Metods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        propertyButton.setTitle("Start", for: .normal)
+        propertyButton.layer.cornerRadius = 15
+        
         redView.alpha = alphaMin
         yellowView.alpha = alphaMin
         greenView.alpha = alphaMin
+    }
+    
+    override func viewWillLayoutSubviews() {
         
-        
-        redView.layer.cornerRadius = cornerRadiusView
-        yellowView.layer.cornerRadius = cornerRadiusView
-        greenView.layer.cornerRadius = cornerRadiusView
-        
-        propertyButton.setTitle("Start", for: .normal)
-        propertyButton.layer.cornerRadius = cornerRadiusButton
-        
+        redView.layer.cornerRadius = redView.frame.width / 2
+        yellowView.layer.cornerRadius = yellowView.frame.height / 2
+        greenView.layer.cornerRadius = greenView.frame.height / 2
     }
     
     // MARK:- IB Action
@@ -88,6 +86,8 @@ class ViewController: UIViewController {
     }
     
     private func viewOff() {
+        
+        color = .red
         
         redView.alpha = alphaMin
         yellowView.alpha = alphaMin
