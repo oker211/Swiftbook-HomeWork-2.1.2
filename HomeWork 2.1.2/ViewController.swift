@@ -9,6 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK:- Enum
+    
+    enum Color {
+        case red
+        case yellow
+        case green
+    }
+    
     // MARK:- IB Outlet
     
     @IBOutlet weak var redView: UIView!
@@ -24,20 +32,7 @@ class ViewController: UIViewController {
     let alphaMin: CGFloat = 0.3
     let alphaMax: CGFloat = 1
     let cornerRadiusButton: CGFloat = 15
-    
-    var height: CGFloat = 0
-    var width: CGFloat = 0
-    
-  
-    
-    
-    // MARK:- Enum
-    
-    enum Color {
-        case red
-        case yellow
-        case green
-    }
+    let cornerRadiusView: CGFloat = 75
     
     // MARK:- Override Metods
     
@@ -48,12 +43,10 @@ class ViewController: UIViewController {
         yellowView.alpha = alphaMin
         greenView.alpha = alphaMin
         
-        height = redView.frame.size.height / 2
-        width = redView.frame.size.width / 2
         
-        redView.layer.cornerRadius = 75
-        yellowView.layer.cornerRadius = 75
-        greenView.layer.cornerRadius = 75
+        redView.layer.cornerRadius = cornerRadiusView
+        yellowView.layer.cornerRadius = cornerRadiusView
+        greenView.layer.cornerRadius = cornerRadiusView
         
         propertyButton.setTitle("Start", for: .normal)
         propertyButton.layer.cornerRadius = cornerRadiusButton
@@ -66,6 +59,9 @@ class ViewController: UIViewController {
         tapButton()
     }
     
+    @IBAction func offButton() {
+        viewOff()
+    }
     
     // MARK:- Methods
     
@@ -89,6 +85,15 @@ class ViewController: UIViewController {
             greenView.alpha = alphaMax
             color = .red
         }
+    }
+    
+    private func viewOff() {
+        
+        redView.alpha = alphaMin
+        yellowView.alpha = alphaMin
+        greenView.alpha = alphaMin
+        
+        propertyButton.setTitle("Start", for: .normal)
     }
     
 }
